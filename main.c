@@ -28,11 +28,11 @@ void check_in(void) {
     printf("Enter your surname: ");
     scanf("%s", surname);
 
-    int dob;
+    int age;
     printf("Enter your age (You must be at least 16): ");
-    scanf("%d", &dob);
+    scanf("%d", &age);
 
-    if (dob < 16) {
+    if (age < 16) {
         printf("Sorry, you must be 16 or older to book.\n");
         return;
     }
