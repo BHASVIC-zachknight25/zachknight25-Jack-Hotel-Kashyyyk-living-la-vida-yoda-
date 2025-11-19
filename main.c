@@ -2,19 +2,75 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#define MAX_BOOKINGS 100
+#define NUM_TABLES 3
+#define NUM_SITTINGS 2
+
+char *table_names[NUM_TABLES] = {"Endor", "Naboo", "Tatooine"};
+char *sitting_times[NUM_SITTINGS] = {"7pm", "9pm"};
+int table_capacity = 4;
+
+// Track bookings for each table and sitting
+int table_occupied[NUM_TABLES][NUM_SITTINGS] = {0}; // number of people booked
+
+
+typedef struct {
+    char booking_id[50];
+    char firstname[20];
+    char surname[20];
+    int age;
+    int amt_ppl;
+    int days;
+    char board_type[5];
+    int room;
+    char newspaper[5];
+} Booking;
+
+Booking bookings[MAX_BOOKINGS];
+int booking_count = 0;
+
 
 void check_in(void);
+void dinner_booking(void);
+void check_out(void);
 int choice;
 
 int main(void) {
     printf("Welcome to Hotel Kashyyyk!\n\n");
-    printf("What would you like to do?\n 1. CHECK IN \n 2. BOOK DINNER \n 3. CHECK OUT");
-    scanf("%d",&choice);
-    if
-    check_in();
-    return 0;
 
+    while (1) {
+
+        while (1) {
+            printf("What would you like to do?\n");
+            printf(" 1. CHECK IN\n 2. BOOK DINNER\n 3. CHECK OUT\n 4. EXIT\n");
+            printf("Enter choice: ");
+
+            if (scanf("%d", &choice) != 1) {
+                printf("Invalid input. Enter 1–4.\n");
+                while (getchar() != '\n');
+                continue;
+            }
+
+            if (choice >= 1 && choice <= 4)
+                break;
+
+            printf("Invalid choice. Enter 1–4.\n");
+        }
+
+        if (choice == 1)
+            check_in();
+        else if (choice == 2)
+            dinner_booking();
+        else if (choice == 3)
+            check_out();
+        else
+            break;
+    }
+
+    printf("We hope you enjoyed your stay at Hotel Kashyyyk! \n Proudly hosted by La Vida Yoda Enterprise. \n Have A Great Day!");
+    return 0;
 }
+
 
 void check_in(void) {
     srand((unsigned)time(NULL));
@@ -55,6 +111,7 @@ void check_in(void) {
     if (strcasecmp(newspaper, "yes") == 0) {
         printf("You will receive a newspaper in the morning ;) \n");
     }
+
 
     // Board type selection
     char board_type[5];
@@ -123,5 +180,146 @@ void check_in(void) {
     printf("TOTAL PRICE     : %d\n", price);
     printf("Booking ref     : %s\n", u_id);
     printf("=====================================\n");
+    // Save booking info
+    if (booking_count < MAX_BOOKINGS) {
+        Booking *b = &bookings[booking_count];
+
+        strcpy(b->booking_id, u_id);
+        strcpy(b->firstname, firstname);
+        strcpy(b->surname, surname);
+        strcpy(b->newspaper, newspaper);
+        b->age = age;
+        b->amt_ppl = amt_ppl;
+        b->days = days;
+        strcpy(b->board_type, board_type);
+        b->room = room;
+
+        booking_count++;
+        printf("Booking saved.\n");
+    } else {
+        printf("Error: Booking storage full.\n");
+    }
+
 }
+
+void dinner_booking(void) {
+    printf("WELCOME TO THE DINNER BOOKING TAB\n");
+    char id[50];
+    printf("Enter your Booking ID: ");
+    scanf("%49s", id);
+
+    Booking *guest = NULL;
+    for (int i = 0; i < booking_count; i++) {
+        if (strcmp(bookings[i].booking_id, id) == 0) {
+            guest = &bookings[i];
+            break;
+        }
+    }
+
+    if (!guest) {
+        printf("Booking ID not found.\n");
+        return;
+    }
+
+    // Only FB or HB can book dinner
+    if (strcasecmp(guest->board_type, "FB") != 0 && strcasecmp(guest->board_type, "HB") != 0) {
+        printf("Only Full Board (FB) or Half Board (HB) guests can book dinner.\n");
+        return;
+    }
+
+    printf("\nBooking details for ID %s:\n", guest->booking_id);
+    printf("Name: %s %s\nBoard type: %s\nNumber of people: %d\n",
+           guest->firstname, guest->surname, guest->board_type, guest->amt_ppl);
+
+    // Show available tables
+    int found_option = 0;
+    printf("\nAvailable tables for your party size:\n");
+    for (int i = 0; i < NUM_TABLES; i++) {
+        for (int j = 0; j < NUM_SITTINGS; j++) {
+            if ((table_capacity - table_occupied[i][j]) >= guest->amt_ppl) {
+                printf("%d) Table %s at %s\n", i * NUM_SITTINGS + j + 1, table_names[i], sitting_times[j]);
+                found_option = 1;
+            }
+        }
+    }
+
+    if (!found_option) {
+        printf("No tables available for your party size.\n");
+        return;
+    }
+
+
+    int choice;
+    printf("Enter the number of the table/time you want to book: ");
+    scanf("%d", &choice);
+
+    int t_index = (choice - 1) / NUM_SITTINGS;
+    int s_index = (choice - 1) % NUM_SITTINGS;
+
+    // Book the table
+    table_occupied[t_index][s_index] += guest->amt_ppl;
+    printf("Table %s at %s successfully booked for %d people!\n",
+           table_names[t_index], sitting_times[s_index], guest->amt_ppl);
+}
+
+
+
+
+void check_out(void) {
+    char id[50];
+    printf("Enter your booking ID: ");
+    scanf("%49s", id);
+
+    Booking *b = NULL;
+    for (int i = 0; i < booking_count; i++) {
+        if (strcmp(bookings[i].booking_id, id) == 0) {
+            b = &bookings[i];
+            break;
+        }
+    }
+
+    if (!b) {
+        printf("No booking found with ID %s\n", id);
+        return;
+    }
+
+    printf("\n===== CHECK-OUT =====\n");
+    printf("Booking ID: %s\n", b->booking_id);
+    printf("Guest: %s %s\n", b->firstname, b->surname);
+
+
+    int room_prices[] = {100,100,85,75,75,50};
+    int room_index = (b->room >= 1 && b->room <=6) ? b->room-1 : 5;
+    double room_total = room_prices[room_index] * b->days;
+    if (b->age > 65) room_total *= 0.9; // 10% discount
+
+    printf("Room total: GBP %.2f\n", room_total);
+
+
+    int board_rate = 0;
+    if (strcasecmp(b->board_type,"FB")==0) board_rate=20;
+    else if (strcasecmp(b->board_type,"HB")==0) board_rate=15;
+    else board_rate=5;
+
+    double board_total = board_rate * b->days * b->amt_ppl;
+
+    // Child discount
+    if (b->age <=16) board_total *= 0.5;
+
+    printf("Board total: GBP %.2f\n", board_total);
+
+
+    double newspaper_cost = 0;
+    if (strcasecmp(b->newspaper,"yes")==0) newspaper_cost = 5.5;
+    if (newspaper_cost>0) printf("Newspaper: GBP %.2f\n", newspaper_cost);
+
+    double total = room_total + board_total + newspaper_cost;
+    printf("-------------------------\n");
+    printf("TOTAL BILL: GBP%.2f\n", total);
+    printf("=========================\n");
+
+
+    printf("Room %d is now available for new guests.\n", b->room);
+}
+
 
