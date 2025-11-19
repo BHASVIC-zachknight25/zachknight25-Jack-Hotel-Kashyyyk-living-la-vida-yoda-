@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/finn.adams25/Downloads/zachknight25-Jack-Hotel-Kashyyyk-living-la-vida-yoda-
+# Install script for directory: C:/Users/zach.knight25/OneDrive - BHASVIC/Documents/GitHub/zachknight25-Jack-Hotel-Kashyyyk-living-la-vida-yoda-
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/finn.adams25/Downloads/zachknight25-Jack-Hotel-Kashyyyk-living-la-vida-yoda-/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/zach.knight25/OneDrive - BHASVIC/Documents/GitHub/zachknight25-Jack-Hotel-Kashyyyk-living-la-vida-yoda-/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
