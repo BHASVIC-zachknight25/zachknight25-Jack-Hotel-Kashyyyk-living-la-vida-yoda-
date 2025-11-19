@@ -4,10 +4,16 @@
 #include <string.h>
 
 void check_in(void);
+int choice;
 
 int main(void) {
+    printf("Welcome to Hotel Kashyyyk!\n\n");
+    printf("What would you like to do?\n 1. CHECK IN \n 2. BOOK DINNER \n 3. CHECK OUT");
+    scanf("%d",&choice);
+    if
     check_in();
     return 0;
+
 }
 
 void check_in(void) {
@@ -16,10 +22,9 @@ void check_in(void) {
     int price = 0;
 
     // Getting User Data
-    printf("Welcome to Hotel Kashyyyk!!!!!! Fill in the following details:\n\n");
-
     char firstname[20];
-    printf("Enter your first name: ");
+    printf("Welcome to The Check In Tab, Please fill in the following details");
+    printf("\n Enter your first name: ");
     scanf("%19s", firstname);
 
     char surname[20];
