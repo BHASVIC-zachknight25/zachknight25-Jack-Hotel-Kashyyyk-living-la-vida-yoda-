@@ -22,8 +22,12 @@
   <component name="ChangeListManager">
     <list default="true" id="dbdaf643-6630-4d6e-9e22-b266c51befed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/zachknight25_Jack_Hotel_Kashyyyk_living_la_vida_yoda_.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/zachknight25_Jack_Hotel_Kashyyyk_living_la_vida_yoda_.dir/main.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/zachknight25_Jack_Hotel_Kashyyyk_living_la_vida_yoda_.dir/main.c.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/zachknight25_Jack_Hotel_Kashyyyk_living_la_vida_yoda_.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/zachknight25_Jack_Hotel_Kashyyyk_living_la_vida_yoda_.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +62,6 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -85,8 +88,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1763564696117</updated>
-      <workItem from="1763564697385" duration="7345000" />
-      <workItem from="1764060385172" duration="2455000" />
+      <workItem from="1763564697385" duration="7765000" />
+      <workItem from="1763572565500" duration="10000" />
+      <workItem from="1763642018941" duration="2111000" />
+      <workItem from="1763645334893" duration="952000" />
     </task>
     <servers />
   </component>

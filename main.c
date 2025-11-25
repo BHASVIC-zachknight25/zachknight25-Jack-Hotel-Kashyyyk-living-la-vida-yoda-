@@ -54,7 +54,7 @@ int main(void) {
             if (choice >= 1 && choice <= 4)
                 break;
 
-            printf("Invalid choice. Enter 1–4.\n");
+            printf("Invalid choice. Enter 1,2,3 or 4\n");
         }
 
         if (choice == 1)
@@ -294,7 +294,7 @@ void dinner_booking(void) {
 
 void check_out(void) {
     char id[50];
-    printf("Enter your booking ID: ");
+    printf(" WELCOME TO THE CHECK OUT TAB\n Please Enter your booking ID: ");
     scanf("%49s", id);
 
     Booking *b = NULL;
