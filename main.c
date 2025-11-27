@@ -131,6 +131,13 @@ void check_in(void) {
     printf("How many days are you staying? ");
     scanf("%d", &days);
 
+    if (days>=0) {
+        printf("Please enter a valid value.");
+    }
+    else {
+        scanf("%d", &days);
+    }
+
     char newspaper[5];
     printf("Would you like to receive a newspaper? (yes/no): ");
     scanf("%4s", newspaper);
@@ -148,7 +155,7 @@ void check_in(void) {
 
     // Room prices
     printf("\nRoom prices:\n");
-    printf("Rooms 1 & 2 - 100\nRoom 3 - 85\nRooms 4 & 5 - 75\nRoom 6 - 50\n");
+    printf("Rooms 1 & 2 - GBP 100 per night \nRoom 3 - GBP 85 per night \nRooms 4 & 5 - GBP 75 per night \nRoom 6 - GBP 50 per night\n");
 
     int room;
     printf("\nWhich room do you want (1-6)? ");
